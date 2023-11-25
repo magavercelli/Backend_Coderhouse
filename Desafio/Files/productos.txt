@@ -7,5 +7,32 @@
 		"thumbnail": "sin imagen",
 		"code": "dfe456",
 		"stock": 25
+	},
+	{
+		"id": 3,
+		"title": "Producto 3",
+		"description": "Descripcion del producto tres",
+		"price": 400,
+		"thumbnail": "sin imagen",
+		"code": "ghi789",
+		"stock": 35
+	},
+	{
+		"id": 4,
+		"title": "Producto 4",
+		"description": "Descripcion del producto cuatro",
+		"price": 800,
+		"thumbnail": "sin imagen",
+		"code": "jkl123",
+		"stock": 25
+	},
+	{
+		"id": 5,
+		"title": "Producto 5",
+		"description": "Descripcion del producto cinco",
+		"price": 700,
+		"thumbnail": "sin imagen",
+		"code": "mno456",
+		"stock": 30
 	}
 ]

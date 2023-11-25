@@ -1,4 +1,4 @@
-import ProductManager from "./managers/ProductManager.js";
+import ProductManager from "./src/managers/ProductManager.js";
 
 const manager = new ProductManager('./Files/productos.json');
 
@@ -42,6 +42,61 @@ const enviar = async () => {
             product2.thumbnail,
             product2.code,
             product2.stock
+        )
+
+        const product3 = {
+            title: 'Producto 3',
+            description: 'Descripcion del producto tres',
+            price: 400,
+            thumbnail: 'sin imagen',
+            code: 'ghi789',
+            stock: 35
+        }
+
+        await manager.addProduct(
+            product3.title,
+            product3.description,
+            product3.price,
+            product3.thumbnail,
+            product3.code,
+            product3.stock
+        )
+
+        
+        const product4 = {
+            title: 'Producto 4',
+            description: 'Descripcion del producto cuatro',
+            price: 800,
+            thumbnail: 'sin imagen',
+            code: 'jkl123',
+            stock: 25
+        }
+
+        await manager.addProduct(
+            product4.title,
+            product4.description,
+            product4.price,
+            product4.thumbnail,
+            product4.code,
+            product4.stock
+        )
+
+        const product5 = {
+            title: 'Producto 5',
+            description: 'Descripcion del producto cinco',
+            price: 700,
+            thumbnail: 'sin imagen',
+            code: 'mno456',
+            stock: 30
+        }
+
+        await manager.addProduct(
+            product5.title,
+            product5.description,
+            product5.price,
+            product5.thumbnail,
+            product5.code,
+            product5.stock
         )
 
         const actualizarProducto = await manager.getProducts();

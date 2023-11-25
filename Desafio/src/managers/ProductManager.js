@@ -55,7 +55,7 @@ addProduct = async (title, description, price, thumbnail, code, stock) => {
 
 getProductById = async (idProduct) => {
     const products = await this.getProducts();
-    const product = this.products.find(product => product.id === idProduct);
+    const product = products.find(product => product.id === idProduct);
     if (product) {
         return product;
     } else {
