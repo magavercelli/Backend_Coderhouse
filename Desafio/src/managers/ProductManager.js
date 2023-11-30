@@ -1,9 +1,10 @@
 import fs from 'fs';
+import {__dirname} from '../utils.js';
 
 export default class ProductManager {
     constructor(path) {
         this.products = [];
-        this.path = './Files/productos.txt'
+        this.path = '..products.json',
         this.id = 1
 
 }
@@ -12,6 +13,7 @@ getProducts = async () => {
     try {
         if(fs.existsSync(this.path)){
             const data = await fs.promises.readFile(this.path, 'utf-8')
+            await fs.promises.writeFile(this.path, JSON.stringify(this.products, '\t'));
             const product = JSON.parse(data);
             return product
         }else {
@@ -24,8 +26,8 @@ getProducts = async () => {
     }
 }
 
-addProduct = async (title, description, price, thumbnail, code, stock) => {
-    if (!title || !description || !price || !thumbnail || !code || !stock) {
+addProduct = async (title, description, price, thumbnail, code, stock, status, category) => {
+    if (!title || !description || !price || !thumbnail || !code || !stock || !status || !category) {
         console.log ('Todos los campos son obligatorios')
             return
         }
@@ -57,7 +59,7 @@ getProductById = async (idProduct) => {
     const products = await this.getProducts();
     const product = products.find(product => product.id === idProduct);
     if (product) {
-        return product;
+        return products;
     } else {
         return 'Not found';
     }
