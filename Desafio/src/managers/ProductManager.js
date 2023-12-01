@@ -1,20 +1,11 @@
 import fs from 'fs';
-import {__dirname} from '../utils.js';
-import path from "path";
+import path from 'path';
+import { __dirname } from '../utils.js';
 
-
-class CartManager {
-    constructor(path){
-        this.path = path.join(__dirname, `/Files/${path}`);
-
-    }
-}
-
-export {CartManager};
-export default class ProductManager {
-    constructor(path) {
+class ProductManager {
+    constructor(pathFile) {
         this.products = [];
-        this.path = '..products.json',
+        this.path = path.join(__dirname, `/Files/${pathFile}`);
         this.id = 1
 
 }
@@ -113,4 +104,4 @@ deleteProduct = async (idProduct) => {
 
 }
     
-
+export {ProductManager};

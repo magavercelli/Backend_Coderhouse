@@ -2,9 +2,10 @@ import {Router} from "express";
 import CartManager from "../managers/CartManager.js";
 import ProductManager from "../managers/ProductManager.js";
 
-const path = 'products.json';
+const path = 'carts.json';
 const router = Router();
 const manager = new CartManager(path);
+const productManager = new ProductManager(path);
 
 router.get('/cid', async (req,res)=>{
     const carts = await manager.getCarts();
@@ -28,13 +29,34 @@ router.post('/', async (req,res)=>{
 })
 
 router.post('/:cid/product/:pid', async (req,res)=>{
-    const productId = req.params; 
-    const updatedProduct = await productId.updateProduct(productId)
-    res.json (updatedProduct);
+    const { cid, pid } = req.params;
 
-    const cartId = req.params;
-    const updatedCart = await cartId.updateCart(cartIdtId)
-    res.json (updatedCart);
+    const cart = await manager.getCartById(cid);
+
+    if (!cart) {
+        return res.json({ 
+            status: 'error',
+            message: 'Carrito no encontrado' });
+    }
+
+    const product = await productManager.getProductById(pid);
+
+    if (!product) {
+        return res.json({ 
+            status: 'error',
+            message: 'Producto no encontrado' });
+    }
+
+    cart.arrayProducts.push({
+        product: pid,  
+        quantity: 1    
+    });
+
+    await manager.updateCart(cart);
+
+    res.json({ 
+        status: 'success', 
+        message: 'Producto agregado al carrito' });
 
 
 })
