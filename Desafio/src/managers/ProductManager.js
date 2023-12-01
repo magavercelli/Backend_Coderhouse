@@ -27,10 +27,10 @@ getProducts = async () => {
     }
 }
 
-addProduct = async (title, description, price, thumbnail, code, stock, status=true, category) => {
-    
-    let NewProduct = {
-        id: this.id++,
+addProduct = async (title, description, price, thumbnail, code, stock, status, category) => {
+
+    let newProduct = {
+        id: this.id,
         title,
         description,
         price,
@@ -39,9 +39,12 @@ addProduct = async (title, description, price, thumbnail, code, stock, status=tr
         stock,
         status,
         category
-    }
+    };
 
-    this.products.push(NewProduct);
+    this.products.push(newProduct);
+    this.id++; // Incrementar el ID para el próximo producto
+
+    this.products.push(newProduct);
 
     const data = JSON.stringify(this.products, null, '\t');
     await fs.promises.writeFile(this.path, data);

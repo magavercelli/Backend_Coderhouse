@@ -1,7 +1,7 @@
 [
 	{
 		"id": 1,
-		"title": "Pepsi Black",
+		"title": "Agua Mineral",
 		"description": "2,5 litros",
 		"price": 950,
 		"thumbnail": [
@@ -9,6 +9,21 @@
 			"i"
 		],
 		"code": "ocg1",
+		"stock": "400",
+		"status": "true",
+		"category": "Bedidas gaseosas"
+	},
+	{
+		"id": 1,
+		"title": "Agua Mineral",
+		"description": "2,5 litros",
+		"price": 950,
+		"thumbnail": [
+			"s",
+			"i"
+		],
+		"code": "ocg1",
+		"stock": "400",
 		"status": "true",
 		"category": "Bedidas gaseosas"
 	}

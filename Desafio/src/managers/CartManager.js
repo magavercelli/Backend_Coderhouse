@@ -31,7 +31,7 @@ class CartManager {
         const carts = await this.getCarts();
         const cart = carts.find(cart => cart.id === idCart);
         if (cart) {
-            return carts;
+            return cart;
         } else {
             return 'Not found';
         }
