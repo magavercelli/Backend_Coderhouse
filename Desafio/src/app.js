@@ -32,6 +32,7 @@ app.use('/api/carts', cartRouter);
 // })
 
 // app.get('/products/:pid', async (req, res) => {
+// app.get('/products/:pid', async (req, res) => {
   
 //     const productId = 4; 
 //         const productById = await manager.getProductById(productId);
@@ -39,7 +40,7 @@ app.use('/api/carts', cartRouter);
 // res.json(productById);
     
     
-// })
+// // })
 
 
 

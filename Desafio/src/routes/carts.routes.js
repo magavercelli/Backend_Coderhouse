@@ -2,7 +2,7 @@ import {Router} from "express";
 import CartManager from "../managers/CartManager.js";
 import ProductManager from "../managers/ProductManager.js";
 
-const path = "carts.json";
+const path = 'products.json';
 const router = Router();
 const manager = new CartManager(path);
 
@@ -23,7 +23,7 @@ router.post('/', async (req,res)=>{
 
     res.send({
         status: "success",
-        messenger: `se ha creado un nuevo carito ${newcart}`
+        messenger: `se ha creado un nuevo carrito ${newcart}`
     })
 })
 

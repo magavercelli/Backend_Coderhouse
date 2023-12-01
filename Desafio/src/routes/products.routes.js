@@ -49,7 +49,7 @@ router.put('/:pid', async (req,res)=>{
 
 })
 
-router.delete('/pid', async (req,res)=>{
+router.delete('/:pid', async (req,res)=>{
     const productId = req.params; 
     await productManager.deleteProduct(productId);
     res.send({
