@@ -1,11 +1,11 @@
 import fs from 'fs';
 import path from 'path';
-import {__dirname} from '../utils.js';
+import { __dirname } from '../utils.js';
 
 class CartManager {
     constructor(path){
         this.cart = [];
-        this.path = '../carts.routes.js',
+        this.path = path.join(__dirname, `/Files/${path}`);
         this.id =1
     }
 
@@ -27,7 +27,7 @@ class CartManager {
     }
 
     getCartById = async (idCart) => {
-        const carts = await this.geCarts();
+        const carts = await this.getCarts();
         const cart = carts.find(cart => cart.id === idCart);
         if (cart) {
             return carts;
@@ -38,7 +38,6 @@ class CartManager {
     }
 
     addCart = async () => {
-        let newId=0;
         const newCart = {
             id: newId++,
             arrayProducts: []

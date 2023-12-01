@@ -1,12 +1,11 @@
 import fs from 'fs';
 import {__dirname} from '../utils.js';
-
 import path from "path";
-import __dirname from "../utils.js";
+
 
 class CartManager {
     constructor(path){
-        this.path = path.join(__dirname, `/Files/ ${path}`);
+        this.path = path.join(__dirname, `/Files/${path}`);
 
     }
 }
@@ -70,7 +69,7 @@ getProductById = async (idProduct) => {
     const products = await this.getProducts();
     const product = products.find(product => product.id === idProduct);
     if (product) {
-        return products;
+        return product;
     } else {
         return 'Not found';
     }
