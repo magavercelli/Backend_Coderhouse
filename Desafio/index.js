@@ -16,14 +16,7 @@ const enviar = async () => {
             stock: 50
         }
 
-        await manager.addProduct(
-            product1.title,
-            product1.description,
-            product1.price,
-            product1.thumbnail,
-            product1.code,
-            product1.stock
-        );
+        await manager.addProduct(product1);
 
         const product2 = {
             title: 'Producto 2',
@@ -35,14 +28,7 @@ const enviar = async () => {
 
         }
 
-        await manager.addProduct(
-            product2.title,
-            product2.description,
-            product2.price,
-            product2.thumbnail,
-            product2.code,
-            product2.stock
-        )
+        await manager.addProduct(product2)
 
         const product3 = {
             title: 'Producto 3',
@@ -53,14 +39,7 @@ const enviar = async () => {
             stock: 35
         }
 
-        await manager.addProduct(
-            product3.title,
-            product3.description,
-            product3.price,
-            product3.thumbnail,
-            product3.code,
-            product3.stock
-        )
+        await manager.addProduct(product3)
 
         
         const product4 = {

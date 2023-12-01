@@ -8,15 +8,16 @@ const manager = new CartManager(path);
 const productManager = new ProductManager(path);
 
 router.get('/:cid', async (req,res)=>{
-    const carts = await manager.getCarts();
-   
-    const cartId = req.params; 
-    const cartById = await carts.getCartById(cartId);
+    
+    const cartId = req.params.cid; 
+    const cartById = await manager.getCartById(cartId);
     res.json(cartById);
 
 })
 
 router.post('/', async (req,res)=>{
+
+    await manager.getCarts();
     const newcart = {
         id: this.id++,
         arrayProducts: []

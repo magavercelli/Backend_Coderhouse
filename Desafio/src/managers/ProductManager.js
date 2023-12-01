@@ -14,7 +14,7 @@ getProducts = async () => {
     try {
         if(fs.existsSync(this.path)){
             const data = await fs.promises.readFile(this.path, 'utf-8')
-            await fs.promises.writeFile(this.path, JSON.stringify(this.products, '\t'));
+            // await fs.promises.writeFile(this.path, JSON.stringify(this.products, '\t'));
             const product = JSON.parse(data);
             return product
         }else {
@@ -28,9 +28,12 @@ getProducts = async () => {
 }
 
 addProduct = async (title, description, price, thumbnail, code, stock, status, category) => {
+    
+    const products = await this.getProducts();
+    const newId = this.id++;
 
     let newProduct = {
-        id: this.id,
+        id: newId,
         title,
         description,
         price,
@@ -41,14 +44,11 @@ addProduct = async (title, description, price, thumbnail, code, stock, status, c
         category
     };
 
-    this.products.push(newProduct);
-    this.id++; // Incrementar el ID para el próximo producto
-
-    this.products.push(newProduct);
+    products.push(newProduct);
 
     const data = JSON.stringify(this.products, null, '\t');
     await fs.promises.writeFile(this.path, data);
-    return this.products;
+    return newProduct;
 }
 
 getProductById = async (idProduct) => {
