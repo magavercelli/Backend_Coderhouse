@@ -1,12 +1,12 @@
 import fs from 'fs';
 import path from 'path';
-import { __dirname } from '../utils.js';
+import __dirname from '../utils.js';
 
 class ProductManager {
     constructor(pathFile) {
         this.products = [];
         this.path = path.join(__dirname, `/Files/${pathFile}`);
-        this.id = 1
+        this.id = 1;
 
 }
 
@@ -27,33 +27,25 @@ getProducts = async () => {
     }
 }
 
-addProduct = async (title, description, price, thumbnail, code, stock, status, category) => {
-    if (!title || !description || !price || !thumbnail || !code || !stock || !status || !category) {
-        console.log ('Todos los campos son obligatorios')
-            return
-        }
+addProduct = async (title, description, price, thumbnail, code, stock, status=true, category) => {
+    
+    let NewProduct = {
+        id: this.id++,
+        title,
+        description,
+        price,
+        thumbnail,
+        code,
+        stock,
+        status,
+        category
+    }
 
-        const existingProduct = this.products.find(product => product.code === code);
-            if (existingProduct) {
-                console.log('Ya existe un producto con el mismo código');
-            }
+    this.products.push(NewProduct);
 
-        const NewProduct = {
-            id: this.id++,
-            title,
-            description,
-            price,
-            thumbnail,
-            code,
-            stock,
-        }
-
-        this.products.push(NewProduct);
-
-        const data = JSON.stringify(this.products, null, '\t');
-        await fs.promises.writeFile(this.path, data);
-        return this.products;
-
+    const data = JSON.stringify(this.products, null, '\t');
+    await fs.promises.writeFile(this.path, data);
+    return this.products;
 }
 
 getProductById = async (idProduct) => {

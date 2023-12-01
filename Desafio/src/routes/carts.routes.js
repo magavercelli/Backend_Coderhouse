@@ -1,13 +1,13 @@
 import {Router} from "express";
-import CartManager from "../managers/CartManager.js";
-import ProductManager from "../managers/ProductManager.js";
+import {CartManager} from "../managers/CartManager.js";
+import {ProductManager} from "../managers/ProductManager.js";
 
 const path = 'carts.json';
 const router = Router();
 const manager = new CartManager(path);
 const productManager = new ProductManager(path);
 
-router.get('/cid', async (req,res)=>{
+router.get('/:cid', async (req,res)=>{
     const carts = await manager.getCarts();
    
     const cartId = req.params; 

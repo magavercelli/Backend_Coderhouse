@@ -1,5 +1,5 @@
 import {Router} from "express";
-import ProductManager from "../managers/ProductManager.js";
+import {ProductManager} from "../managers/ProductManager.js";
 
 const path = 'products.json';
 const router = Router();
@@ -31,14 +31,18 @@ router.get('/:pid', async (req,res)=>{
 })
 
 router.post('/', async (req,res)=>{
-    const {title, description, price, thumbnail: [foto1, foto2], code, stock, status= true, category} = req.body;
-    const addPro =  await productManager.addProduct({title, description, price, thumbnail:[foto1, foto2], code, stock, status, category});
-    res.json(addPro);
+    const {title, description, price, thumbnail, code, stock, status= true, category} = req.body;
+    
+    const [foto1, foto2] = thumbnail;
 
+    const addPro =  await productManager.addProduct(title, description, price, [foto1, foto2], code, stock, status, category);
+    res.json(addPro);
+    
 })
 
 router.put('/:pid', async (req,res)=>{
     const productId = req.params; 
+
     const {title, description, price, thumbnail: [foto1, foto2], code, stock, status = true, category} = req.body;
     const updatedProduct = await productManager.updateProduct(productId, {title, description, price, thumbnail: [foto1, foto2], code, stock, status, category})
     res.json (updatedProduct);

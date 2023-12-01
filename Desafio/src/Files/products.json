@@ -1,1 +1,15 @@
-[]
+[
+	{
+		"id": 1,
+		"title": "Pepsi Black",
+		"description": "2,5 litros",
+		"price": 950,
+		"thumbnail": [
+			"s",
+			"i"
+		],
+		"code": "ocg1",
+		"status": "true",
+		"category": "Bedidas gaseosas"
+	}
+]
