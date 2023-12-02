@@ -23,10 +23,7 @@ router.post('/', async (req,res)=>{
         arrayProducts: []
     }
 
-    res.send({
-        status: "success",
-        messenger: `se ha creado un nuevo carrito ${newcart}`
-    })
+    res.json(newcart);
 })
 
 router.post('/:cid/product/:pid', async (req,res)=>{
@@ -35,7 +32,7 @@ router.post('/:cid/product/:pid', async (req,res)=>{
     const cart = await manager.getCartById(cid);
 
     if (!cart) {
-        return res.json({ 
+        return res.send({ 
             status: 'error',
             message: 'Carrito no encontrado' });
     }
@@ -43,7 +40,7 @@ router.post('/:cid/product/:pid', async (req,res)=>{
     const product = await productManager.getProductById(pid);
 
     if (!product) {
-        return res.json({ 
+        return res.send({ 
             status: 'error',
             message: 'Producto no encontrado' });
     }
@@ -55,10 +52,7 @@ router.post('/:cid/product/:pid', async (req,res)=>{
 
     await manager.updateCart(cart);
 
-    res.json({ 
-        status: 'success', 
-        message: 'Producto agregado al carrito' });
-
+    res.json(arrayProducts);
 
 })
 
