@@ -7,9 +7,9 @@ const productManager = new ProductManager(path);
 
 router.get('/', async (req,res)=>{
 
+    const limit = req.query.limit
     const products = await productManager.getProducts();
 
-    const limit = req.query.limit
     if(limit){
         const productosFilter = products.slice(0, limit)
         return res.json(productosFilter);
@@ -20,7 +20,7 @@ router.get('/', async (req,res)=>{
 
 router.get('/:pid', async (req,res)=>{
 
-    const productId = req.params; 
+    const productId = req.params.pid; 
     const productById = await productManager.getProductById(productId);
     res.json(productById);
 
@@ -28,17 +28,17 @@ router.get('/:pid', async (req,res)=>{
 
 router.post('/', async (req,res)=>{
     const { title, description, price, thumbnail, code, stock, status = true, category } = req.body;
-        const [foto1, foto2] = thumbnail;
+    const [foto1, foto2] = thumbnail;
 
-        const addPro = await productManager.addProduct(title, description, price, [foto1, foto2], code, stock, status, category);
-        res.json(addPro);
+    const addPro = await productManager.addProduct(title, description, price, [foto1, foto2], code, stock, status, category);
+    res.json(addPro);
     
 })
 
 router.put('/:pid', async (req,res)=>{
     const productId = req.params.pid 
 
-    const {title, description, price, thumbnail: [foto1, foto2], code, stock, status = true, category} = req.body;
+    const {title, description, price, thumbnail: [foto1, foto2], code, stock, status = true, category} = req.body; // modificar
     const updatedProduct = await productManager.updateProduct(productId, {title, description, price, thumbnail: [foto1, foto2], code, stock, status, category})
     res.json (updatedProduct);
    
@@ -47,10 +47,7 @@ router.put('/:pid', async (req,res)=>{
 router.delete('/:pid', async (req,res)=>{
     const productId = req.params.pid;
     await productManager.deleteProduct(productId);
-    res.send({
-        status: "success",
-        message: `El producto con ID ${productId} ha sido eliminado`
-    });
+    res.json({productId});
 
 })
 

@@ -11,25 +11,13 @@ class ProductManager {
 }
 
 getProducts = async () => {
-    try {
-        if(fs.existsSync(this.path)){
-            const data = await fs.promises.readFile(this.path, 'utf-8')
-            // await fs.promises.writeFile(this.path, JSON.stringify(this.products, '\t'));
-            const product = JSON.parse(data);
-            return product
-        }else {
-            return [];
-        }
-      
-    } catch (error) {
-        console.log('Error:', error);
-        
-    }
-}
+    const data = await fs.promises.readFile(this.path, 'utf-8');
+    const response =JSON.parse(data);
+    return response;
+}   
 
 addProduct = async (title, description, price, thumbnail, code, stock, status, category) => {
     
-    const products = await this.getProducts();
     const newId = this.id++;
 
     let newProduct = {
@@ -44,10 +32,11 @@ addProduct = async (title, description, price, thumbnail, code, stock, status, c
         category
     };
 
-    products.push(newProduct);
+    this.products = await this.getProducts();
+    this.products.push(newProduct);
 
-    const data = JSON.stringify(this.products, null, '\t');
-    await fs.promises.writeFile(this.path, data);
+    await fs.promises.writeFile(this.path,JSON.stringify(this.products));
+    
     return newProduct;
 }
 
