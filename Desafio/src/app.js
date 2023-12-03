@@ -1,9 +1,7 @@
 import express from 'express';
 import { productRouter } from './routes/products.routes.js';
 import { cartRouter } from './routes/carts.routes.js';
-import { ProductManager } from './managers/ProductManager.js';
 
-export const productManager = new ProductManager;
 
 const PORT = 8080;
 const app = express();
@@ -19,6 +17,7 @@ app.listen(PORT, ()=> {
 
 })
 
+
 // app.get('/products', async (req, res) => {
 
 //     const productos = await manager.getProducts();
@@ -32,7 +31,6 @@ app.listen(PORT, ()=> {
 // })
 
 // app.get('/products/:pid', async (req, res) => {
-// app.get('/products/:pid', async (req, res) => {
   
 //     const productId = 4; 
 //         const productById = await manager.getProductById(productId);
@@ -40,7 +38,7 @@ app.listen(PORT, ()=> {
 // res.json(productById);
     
     
-// // })
+// })
 
 
 
