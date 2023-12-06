@@ -11,10 +11,15 @@ class ProductManager {
 }
 
 getProducts = async () => {
-    const data = await fs.promises.readFile(this.path, 'utf-8');
-    const response =JSON.parse(data);
-    return response;
-}   
+    if(fs.existsSync(this.path)){
+        const data = await fs.promises.readFile(this.path, 'utf-8');
+        const response =JSON.parse(data);
+        return response;
+    }else{
+        return [];
+    }   
+}
+    
 
 addProduct = async (title, description, price, thumbnail, code, stock, status, category) => {
     
